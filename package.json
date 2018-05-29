@@ -4,16 +4,33 @@
   "description": "Small electron application to quickly decode JWT",
   "main": "main.js",
   "dependencies": {
+    "@material-ui/core": "^1.1.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
   },
   "devDependencies": {
-    "electron": "^2.0.2"
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "cross-env": "^5.1.6",
+    "electron": "^2.0.2",
+    "electron-builder": "^20.15.1",
+    "rollup": "^0.59.4",
+    "rollup-plugin-babel": "^3.0.4",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-uglify": "^4.0.0",
+    "uglify-es": "^3.3.9"
   },
   "scripts": {
-    "start": "electron .",
+    "start": "cross-env NODE_ENV=dev electron .",
+    "prod": "rollup -c && electron .",
+    "compile": "rollup -c",
+    "pack:win": "electron-builder --dir --win",
+    "pack:mac": "electron-builder --x64 --mac",
+    "pack:linux": "electron-builder --linux",
+    "pack:all": "electron-builder -mwl",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Yoann Fleury @yoannfleurydev",
+  "license": "MIT"
 }
