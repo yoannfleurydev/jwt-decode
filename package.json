@@ -3,6 +3,16 @@
   "version": "0.1.0",
   "description": "Small electron application to quickly decode JWT",
   "main": "main.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=dev electron .",
+    "prod": "yarn compile && electron .",
+    "compile": "rollup -c",
+    "pack:win": "yarn compile && electron-builder --dir --win",
+    "pack:mac": "yarn compile && electron-builder --x64 --mac",
+    "pack:linux": "yarn compile && electron-builder --linux",
+    "pack:all": "yarn compile && electron-builder -mwl",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "@material-ui/core": "^1.1.0",
     "react": "^16.4.0",
@@ -20,16 +30,6 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-uglify": "^4.0.0",
     "uglify-es": "^3.3.9"
-  },
-  "scripts": {
-    "start": "cross-env NODE_ENV=dev electron .",
-    "prod": "rollup -c && electron .",
-    "compile": "rollup -c",
-    "pack:win": "electron-builder --dir --win",
-    "pack:mac": "electron-builder --x64 --mac",
-    "pack:linux": "electron-builder --linux",
-    "pack:all": "electron-builder -mwl",
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Yoann Fleury @yoannfleurydev",
   "license": "MIT"
