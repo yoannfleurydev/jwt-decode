@@ -1,8 +1,21 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, globalShortcut } = require("electron");
 
 function createWindow() {
-  let win = new BrowserWindow({ width: 800, height: 600, frame: false });
+  let win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    frame: false,
+    show: false
+  });
+
   win.loadFile("src/index.html");
+  win.once("ready-to-show", () => {
+    win.show();
+  });
+
+  globalShortcut.register("Esc", () => {
+    win.close();
+  });
 }
 
 app.on("ready", createWindow);
